@@ -39,3 +39,23 @@ app = FastAPI(
 
 todo_route_handler = TodoApiRouteHandler()
 todo_route_handler.register_routes(app)
+
+
+from typing import Annotated
+from fastapi import FastAPI, Query, Path
+from pydantic import BaseModel, Field
+
+class UserBase(BaseModel):
+    username: str
+    email: str
+
+class UserIn(UserBase):
+    password: str
+
+class UserOut(UserBase):     # 只有安全字段
+    id: int
+
+@app.get("/users", response_model=UserOut)
+def create_user(user: UserIn):
+    # 模拟落库，生成 id
+    return {"id": 10, "username": user.username, "email": user.email, "password": "ignore me"}

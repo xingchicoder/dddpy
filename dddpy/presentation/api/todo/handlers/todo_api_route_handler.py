@@ -102,7 +102,8 @@ _COMPLETE_BAD_REQUEST_RESPONSE: dict[str, Any] = {
 
 class TodoApiRouteHandler:
     """Register HTTP endpoints that expose todo use cases."""
-
+    # def __init__(self,app:FastAPI):
+    #     self.app = app
     def register_routes(self, app: FastAPI) -> None:
         """Attach todo routes to the provided FastAPI application.
 
